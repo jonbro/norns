@@ -1,16 +1,15 @@
 --- Poll class;
 -- API for receiving values from audio system.
 -- @module poll
--- @alias Poll
 
 local tab = require 'tabutil'
 
 local Poll = {}
 Poll.__index = Poll
 
---- poll objects (index by name)
+-- poll objects (index by name)
 Poll.polls = {}
---- poll names (indexed by int) - for reverse lookup
+-- poll names (indexed by int) - for reverse lookup
 Poll.poll_names = {}
 
 -- constructor.
@@ -33,12 +32,12 @@ end
 
 --- start a poll.
 function Poll:start()
-  start_poll(self.props.id)
+  _norns.start_poll(self.props.id)
 end
 
 --- stop a poll.
 function Poll:stop()
-  stop_poll(self.props.id)
+  _norns.stop_poll(self.props.id)
 end
 
 --- request a single update immediately.
@@ -48,7 +47,7 @@ function Poll:update(callback)
 	 self.props.callback = callback
 	 end
    end
-   request_poll_value(self.props.id)
+   _norns.request_poll_value(self.props.id)
 end
 
 --- custom setters.
@@ -56,7 +55,7 @@ end
 function Poll:__newindex(idx, val)
   if idx == 'time' then
     self.props.time = val
-    set_poll_time(self.props.id, val)
+    _norns.set_poll_time(self.props.id, val)
   elseif idx == 'callback' then
     self.props.callback = val
   end
@@ -97,7 +96,7 @@ end
 --- Static Methods
 -- @section static
 
---- called with OSC data from norns callback to register all available polls.
+-- called with OSC data from norns callback to register all available polls.
 -- @param data - table from OSC; each entry is { id (int), name (string) }
 -- @tparam integer count - size of table
 Poll.register = function(data, count)
@@ -121,7 +120,7 @@ Poll.list_names = function()
   for _,n in ipairs(names) do print(n) end
 end
 
---- set callback function for registered Poll object by name.
+-- set callback function for registered Poll object by name.
 -- @tparam string name
 -- @param callback function to call with value on each poll
 Poll.set = function(name, callback)
@@ -132,7 +131,7 @@ Poll.set = function(name, callback)
   return p
 end
 
---- stop all polls.
+-- stop all polls.
 Poll.clear_all = function()
    for _,p in pairs(Poll.polls) do
       p:stop()

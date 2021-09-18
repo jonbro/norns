@@ -40,28 +40,48 @@
 <ul class="nowrap">
   <li><a href="../modules/arc.html">arc</a></li>
   <li><a href="../modules/audio.html">audio</a></li>
+  <li><a href="../modules/clock.html">clock</a></li>
   <li><a href="../modules/controlspec.html">controlspec</a></li>
+  <li><a href="../modules/crow.html">crow</a></li>
   <li><a href="../modules/encoders.html">encoders</a></li>
   <li><a href="../modules/engine.html">engine</a></li>
   <li><a href="../modules/grid.html">grid</a></li>
   <li><strong>hid</strong></li>
+  <li><a href="../modules/keyboard.html">keyboard</a></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
-  <li><a href="../modules/control.html">control</a></li>
+  <li><a href="../modules/params.control.html">params.control</a></li>
   <li><a href="../modules/paramset.html">paramset</a></li>
   <li><a href="../modules/poll.html">poll</a></li>
   <li><a href="../modules/screen.html">screen</a></li>
   <li><a href="../modules/script.html">script</a></li>
   <li><a href="../modules/softcut.html">softcut</a></li>
-  <li><a href="../modules/elca.html">elca</a></li>
-  <li><a href="../modules/EnvGraph.html">EnvGraph</a></li>
-  <li><a href="../modules/FilterGraph.html">FilterGraph</a></li>
-  <li><a href="../modules/Graph.html">Graph</a></li>
-  <li><a href="../modules/MusicUtil.html">MusicUtil</a></li>
-  <li><a href="../modules/tabutil.html">tabutil</a></li>
-  <li><a href="../modules/UI.html">UI</a></li>
-  <li><a href="../modules/util.html">util</a></li>
+  <li><a href="../modules/lib.BeatClock.html">lib.BeatClock</a></li>
+  <li><a href="../modules/lib.container.defaulttable.html">lib.container.defaulttable</a></li>
+  <li><a href="../modules/lib.container.deque.html">lib.container.deque</a></li>
+  <li><a href="../modules/lib.container.observable.html">lib.container.observable</a></li>
+  <li><a href="../modules/lib.container.watchtable.html">lib.container.watchtable</a></li>
+  <li><a href="../modules/lib.container.weaktable.html">lib.container.weaktable</a></li>
+  <li><a href="../modules/lib.elca.html">lib.elca</a></li>
+  <li><a href="../modules/lib.EnvGraph.html">lib.EnvGraph</a></li>
+  <li><a href="../modules/lib.er.html">lib.er</a></li>
+  <li><a href="../modules/lib.fileselect.html">lib.fileselect</a></li>
+  <li><a href="../modules/lib.FilterGraph.html">lib.FilterGraph</a></li>
+  <li><a href="../modules/lib.filters.html">lib.filters</a></li>
+  <li><a href="../modules/lib.formatters.html">lib.formatters</a></li>
+  <li><a href="../modules/lib.Graph.html">lib.Graph</a></li>
+  <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
+  <li><a href="../modules/Lattice.html">Lattice</a></li>
+  <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
+  <li><a href="../modules/lib.MusicUtil.html">lib.MusicUtil</a></li>
+  <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
+  <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
+  <li><a href="../modules/lib.test.luaunit.html">lib.test.luaunit</a></li>
+  <li><a href="../modules/lib.textentry.html">lib.textentry</a></li>
+  <li><a href="../modules/lib.UI.html">lib.UI</a></li>
+  <li><a href="../modules/lib.util.html">lib.util</a></li>
+  <li><a href="../modules/lib.voice.html">lib.voice</a></li>
 </ul>
 
 </div>
@@ -76,26 +96,18 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#new">new (id, name, types, codes, dev)</a></td>
-	<td class="summary">constructor</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#add">add (dev)</a></td>
+	<td class="name" nowrap><a href="#Hid.add">Hid.add (dev)</a></td>
 	<td class="summary">static callback when any hid device is added;
  user scripts can redefine</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#remove">remove (dev)</a></td>
+	<td class="name" nowrap><a href="#Hid.remove">Hid.remove (dev)</a></td>
 	<td class="summary">static callback when any hid device is removed;
  user scripts can redefine</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#connect">connect (n)</a></td>
+	<td class="name" nowrap><a href="#Hid.connect">Hid.connect (n)</a></td>
 	<td class="summary">create device, returns object with handler and send</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#cleanup">cleanup ()</a></td>
-	<td class="summary">clear handlers</td>
 	</tr>
 </table>
 
@@ -107,45 +119,8 @@
 
     <dl class="function">
     <dt>
-    <a name = "new"></a>
-    <strong>new (id, name, types, codes, dev)</strong>
-    </dt>
-    <dd>
-    constructor
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">id</span>
-            <span class="types"><span class="type">integer</span></span>
-         : arbitrary numeric identifier
-        </li>
-        <li><span class="parameter">name</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-         : name
-        </li>
-        <li><span class="parameter">types</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-         : array of supported event types. keys are type codes, values are strings
-        </li>
-        <li><span class="parameter">codes</span>
-            <span class="types"><span class="type">userdata</span></span>
-         : array of supported codes. each entry is a table of codes of a given type. subtables are indexed by supported code numbers; values are code names
-        </li>
-        <li><span class="parameter">dev</span>
-            <span class="types"><span class="type">userdata</span></span>
-         : opaque pointer to device
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "add"></a>
-    <strong>add (dev)</strong>
+    <a name = "Hid.add"></a>
+    <strong>Hid.add (dev)</strong>
     </dt>
     <dd>
     static callback when any hid device is added;
@@ -165,8 +140,8 @@
 
 </dd>
     <dt>
-    <a name = "remove"></a>
-    <strong>remove (dev)</strong>
+    <a name = "Hid.remove"></a>
+    <strong>Hid.remove (dev)</strong>
     </dt>
     <dd>
     static callback when any hid device is removed;
@@ -186,8 +161,8 @@
 
 </dd>
     <dt>
-    <a name = "connect"></a>
-    <strong>connect (n)</strong>
+    <a name = "Hid.connect"></a>
+    <strong>Hid.connect (n)</strong>
     </dt>
     <dd>
     create device, returns object with handler and send
@@ -205,20 +180,6 @@
 
 
 </dd>
-    <dt>
-    <a name = "cleanup"></a>
-    <strong>cleanup ()</strong>
-    </dt>
-    <dd>
-    clear handlers
-
-
-
-
-
-
-
-</dd>
 </dl>
 
 
@@ -226,7 +187,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2019-04-04 20:07:57 </i>
+<i style="float:right;">Last updated 2021-03-01 14:09:41 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

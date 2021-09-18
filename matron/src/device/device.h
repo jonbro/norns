@@ -1,12 +1,13 @@
 
 #pragma once
 
-#include <stdint.h>
-#include <pthread.h>
-#include "device_monome.h"
+#include "device_common.h"
+#include "device_crow.h"
 #include "device_hid.h"
 #include "device_midi.h"
-#include "device_common.h"
+#include "device_monome.h"
+#include <pthread.h>
+#include <stdint.h>
 
 // common data structure for all devices
 union dev {
@@ -14,12 +15,15 @@ union dev {
     struct dev_monome monome;
     struct dev_hid hid;
     struct dev_midi midi;
+    struct dev_crow crow;
 };
 
 // initialize device registry
 extern void devices_init(void);
 // create a device from a file path
-extern union dev *dev_new(device_t type, const char *path, const char *name);
+extern union dev *dev_new(device_t type, const char *path, const char *name, bool multiport_device,
+                          unsigned int midi_port_index);
+
 // destroy given device
 extern void dev_delete(union dev *d);
 

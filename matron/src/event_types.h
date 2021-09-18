@@ -1,8 +1,8 @@
 #pragma once
 
-#include <stdint.h>
 #include "oracle.h"
 #include "osc.h"
+#include <stdint.h>
 
 typedef enum {
     // unused (do not remove)
@@ -13,6 +13,10 @@ typedef enum {
     EVENT_METRO,
     // clock resume requested
     EVENT_CLOCK_RESUME,
+    // external clock sent start event
+    EVENT_CLOCK_START,
+    // external clock sent stop event
+    EVENT_CLOCK_STOP,
     // gpio event
     EVENT_KEY,
     // gpio event
@@ -65,10 +69,20 @@ typedef enum {
     EVENT_STARTUP_READY_OK,
     // crone startup timeout event
     EVENT_STARTUP_READY_TIMEOUT,
+    // system command finished
+    EVENT_SYSTEM_CMD,
     // reset the lua state
     EVENT_RESET_LVM,
     // quit the event loop
     EVENT_QUIT,
+    // crow add
+    EVENT_CROW_ADD,
+    // crow remove
+    EVENT_CROW_REMOVE,
+    // crow event
+    EVENT_CROW_EVENT,
+    // softcut buffer content callback
+    EVENT_SOFTCUT_RENDER,
 } event_t;
 
 // a packed data structure for four volume levels
@@ -178,6 +192,14 @@ struct event_clock_resume {
     uint32_t thread_id;
 };
 
+struct event_clock_start {
+    struct event_common common;
+};
+
+struct event_clock_stop {
+    struct event_common common;
+};
+
 struct event_key {
     struct event_common common;
     uint8_t n;
@@ -200,6 +222,10 @@ struct event_stat {
     uint16_t disk;
     uint8_t temp;
     uint8_t cpu;
+    uint8_t cpu1;
+    uint8_t cpu2;
+    uint8_t cpu3;
+    uint8_t cpu4;
 };
 
 struct event_enc {
@@ -248,6 +274,36 @@ struct event_startup_ready_timeout {
     struct event_common common;
 }; // + 0
 
+struct event_crow_add {
+    struct event_common common;
+    void *dev;
+}; // +4
+
+struct event_crow_remove {
+    struct event_common common;
+    uint32_t id;
+}; // +4
+
+struct event_crow_event {
+    struct event_common common;
+    void *dev;
+    uint8_t id;
+}; // +4
+
+struct event_system_cmd {
+    struct event_common common;
+    char *capture;
+};
+
+struct event_softcut_render {
+    struct event_common common;
+    int idx;
+    float sec_per_sample;
+    float start;
+    size_t size;
+    float* data;
+};
+
 union event_data {
     uint32_t type;
     struct event_exec_code_line exec_code_line;
@@ -277,4 +333,9 @@ union event_data {
     struct event_poll_wave poll_wave;
     struct event_startup_ready_ok startup_ready_ok;
     struct event_startup_ready_timeout startup_ready_timeout;
+    struct event_crow_add crow_add;
+    struct event_crow_remove crow_remove;
+    struct event_crow_event crow_event;
+    struct event_system_cmd system_cmd;
+    struct event_softcut_render softcut_render;
 };

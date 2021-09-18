@@ -40,28 +40,48 @@
 <ul class="nowrap">
   <li><strong>arc</strong></li>
   <li><a href="../modules/audio.html">audio</a></li>
+  <li><a href="../modules/clock.html">clock</a></li>
   <li><a href="../modules/controlspec.html">controlspec</a></li>
+  <li><a href="../modules/crow.html">crow</a></li>
   <li><a href="../modules/encoders.html">encoders</a></li>
   <li><a href="../modules/engine.html">engine</a></li>
   <li><a href="../modules/grid.html">grid</a></li>
   <li><a href="../modules/hid.html">hid</a></li>
+  <li><a href="../modules/keyboard.html">keyboard</a></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
-  <li><a href="../modules/control.html">control</a></li>
+  <li><a href="../modules/params.control.html">params.control</a></li>
   <li><a href="../modules/paramset.html">paramset</a></li>
   <li><a href="../modules/poll.html">poll</a></li>
   <li><a href="../modules/screen.html">screen</a></li>
   <li><a href="../modules/script.html">script</a></li>
   <li><a href="../modules/softcut.html">softcut</a></li>
-  <li><a href="../modules/elca.html">elca</a></li>
-  <li><a href="../modules/EnvGraph.html">EnvGraph</a></li>
-  <li><a href="../modules/FilterGraph.html">FilterGraph</a></li>
-  <li><a href="../modules/Graph.html">Graph</a></li>
-  <li><a href="../modules/MusicUtil.html">MusicUtil</a></li>
-  <li><a href="../modules/tabutil.html">tabutil</a></li>
-  <li><a href="../modules/UI.html">UI</a></li>
-  <li><a href="../modules/util.html">util</a></li>
+  <li><a href="../modules/lib.BeatClock.html">lib.BeatClock</a></li>
+  <li><a href="../modules/lib.container.defaulttable.html">lib.container.defaulttable</a></li>
+  <li><a href="../modules/lib.container.deque.html">lib.container.deque</a></li>
+  <li><a href="../modules/lib.container.observable.html">lib.container.observable</a></li>
+  <li><a href="../modules/lib.container.watchtable.html">lib.container.watchtable</a></li>
+  <li><a href="../modules/lib.container.weaktable.html">lib.container.weaktable</a></li>
+  <li><a href="../modules/lib.elca.html">lib.elca</a></li>
+  <li><a href="../modules/lib.EnvGraph.html">lib.EnvGraph</a></li>
+  <li><a href="../modules/lib.er.html">lib.er</a></li>
+  <li><a href="../modules/lib.fileselect.html">lib.fileselect</a></li>
+  <li><a href="../modules/lib.FilterGraph.html">lib.FilterGraph</a></li>
+  <li><a href="../modules/lib.filters.html">lib.filters</a></li>
+  <li><a href="../modules/lib.formatters.html">lib.formatters</a></li>
+  <li><a href="../modules/lib.Graph.html">lib.Graph</a></li>
+  <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
+  <li><a href="../modules/Lattice.html">Lattice</a></li>
+  <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
+  <li><a href="../modules/lib.MusicUtil.html">lib.MusicUtil</a></li>
+  <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
+  <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
+  <li><a href="../modules/lib.test.luaunit.html">lib.test.luaunit</a></li>
+  <li><a href="../modules/lib.textentry.html">lib.textentry</a></li>
+  <li><a href="../modules/lib.UI.html">lib.UI</a></li>
+  <li><a href="../modules/lib.util.html">lib.util</a></li>
+  <li><a href="../modules/lib.voice.html">lib.voice</a></li>
 </ul>
 
 </div>
@@ -69,47 +89,47 @@
 <div id="content">
 
 <h1>Module <code>arc</code></h1>
-<p>Arc class</p>
+<p>Arc</p>
 <p></p>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#new">new (id, serial, name, dev)</a></td>
+	<td class="name" nowrap><a href="#Arc.new">Arc.new (id, serial, name, dev)</a></td>
 	<td class="summary">constructor.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#add">add (dev)</a></td>
+	<td class="name" nowrap><a href="#Arc.add">Arc.add (dev)</a></td>
 	<td class="summary">static callback when any arc device is added.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#remove">remove (dev)</a></td>
+	<td class="name" nowrap><a href="#Arc.remove">Arc.remove (dev)</a></td>
 	<td class="summary">static callback when any arc device is removed.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#led">led (ring, x, val)</a></td>
+	<td class="name" nowrap><a href="#Arc:led">Arc:led (ring, x, val)</a></td>
 	<td class="summary">set state of single LED on this arc device.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#all">all (val)</a></td>
+	<td class="name" nowrap><a href="#Arc:all">Arc:all (val)</a></td>
 	<td class="summary">set state of all LEDs on this arc device.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#refresh">refresh ()</a></td>
+	<td class="name" nowrap><a href="#Arc:refresh">Arc:refresh ()</a></td>
 	<td class="summary">update any dirty quads on this arc device.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#segment">segment (ring, from, to, level)</a></td>
+	<td class="name" nowrap><a href="#Arc:segment">Arc:segment (ring, from, to, level)</a></td>
 	<td class="summary">create an anti-aliased point to point arc
  segment/range on a sepcific LED ring.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#connect">connect (n)</a></td>
+	<td class="name" nowrap><a href="#Arc.connect">Arc.connect (n)</a></td>
 	<td class="summary">create device, returns object with handler and send</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#cleanup">cleanup ()</a></td>
+	<td class="name" nowrap><a href="#Arc.cleanup">Arc.cleanup ()</a></td>
 	<td class="summary">clear handlers</td>
 	</tr>
 </table>
@@ -122,8 +142,8 @@
 
     <dl class="function">
     <dt>
-    <a name = "new"></a>
-    <strong>new (id, serial, name, dev)</strong>
+    <a name = "Arc.new"></a>
+    <strong>Arc.new (id, serial, name, dev)</strong>
     </dt>
     <dd>
     constructor.
@@ -136,11 +156,11 @@
          : arbitrary numeric identifier
         </li>
         <li><span class="parameter">serial</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
          : serial
         </li>
         <li><span class="parameter">name</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
          : name
         </li>
         <li><span class="parameter">dev</span>
@@ -155,8 +175,8 @@
 
 </dd>
     <dt>
-    <a name = "add"></a>
-    <strong>add (dev)</strong>
+    <a name = "Arc.add"></a>
+    <strong>Arc.add (dev)</strong>
     </dt>
     <dd>
     static callback when any arc device is added.
@@ -176,8 +196,8 @@
 
 </dd>
     <dt>
-    <a name = "remove"></a>
-    <strong>remove (dev)</strong>
+    <a name = "Arc.remove"></a>
+    <strong>Arc.remove (dev)</strong>
     </dt>
     <dd>
     static callback when any arc device is removed.
@@ -197,8 +217,8 @@
 
 </dd>
     <dt>
-    <a name = "led"></a>
-    <strong>led (ring, x, val)</strong>
+    <a name = "Arc:led"></a>
+    <strong>Arc:led (ring, x, val)</strong>
     </dt>
     <dd>
     set state of single LED on this arc device.
@@ -226,8 +246,8 @@
 
 </dd>
     <dt>
-    <a name = "all"></a>
-    <strong>all (val)</strong>
+    <a name = "Arc:all"></a>
+    <strong>Arc:all (val)</strong>
     </dt>
     <dd>
     set state of all LEDs on this arc device.
@@ -247,8 +267,8 @@
 
 </dd>
     <dt>
-    <a name = "refresh"></a>
-    <strong>refresh ()</strong>
+    <a name = "Arc:refresh"></a>
+    <strong>Arc:refresh ()</strong>
     </dt>
     <dd>
     update any dirty quads on this arc device.
@@ -261,8 +281,8 @@
 
 </dd>
     <dt>
-    <a name = "segment"></a>
-    <strong>segment (ring, from, to, level)</strong>
+    <a name = "Arc:segment"></a>
+    <strong>Arc:segment (ring, from, to, level)</strong>
     </dt>
     <dd>
     create an anti-aliased point to point arc
@@ -296,8 +316,8 @@
 
 </dd>
     <dt>
-    <a name = "connect"></a>
-    <strong>connect (n)</strong>
+    <a name = "Arc.connect"></a>
+    <strong>Arc.connect (n)</strong>
     </dt>
     <dd>
     create device, returns object with handler and send
@@ -316,8 +336,8 @@
 
 </dd>
     <dt>
-    <a name = "cleanup"></a>
-    <strong>cleanup ()</strong>
+    <a name = "Arc.cleanup"></a>
+    <strong>Arc.cleanup ()</strong>
     </dt>
     <dd>
     clear handlers
@@ -336,7 +356,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2019-04-04 20:07:57 </i>
+<i style="float:right;">Last updated 2021-03-01 14:09:41 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
