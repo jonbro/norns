@@ -191,9 +191,9 @@ void screen_init(void) {
     }
     crfb = cairo_create(surfacefb);
 
-    surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 128, 64);
+    surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 320, 240);
     cr = cairo_create(surface);
-
+    cairo_scale(cr,2,2);
     status = FT_Init_FreeType(&value);
     if (status != 0) {
         fprintf(stderr, "ERROR (screen) freetype init\n");
